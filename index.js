@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 
 // -- Server Stats That Don't Change Locally -- //
 var CoreStats = {
-  Version: ["1.1.1"],
+  Version: ["1.1.2"],
   Prefix: ["!"],
 };
 // -- COMMAND_FUNCTIONS -- //
@@ -34,6 +34,7 @@ BotClient.on('ready', () =>{
   console.log('====================================');
   console.log('Type "node ." to start the program!!');
   console.log('====================================');
+  console.log('Add this bot to your discord server by following the link: https://discord.com/oauth2/authorize?client_id=900029558441529354&scope=bot&permissions=0');
 
     BotClient.user.setActivity(
         `No Sleep in ${BotClient.guilds.cache.size} Server(s)`, {
