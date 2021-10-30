@@ -1,8 +1,7 @@
-const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const Discord = require('discord.js')
 const Token = process.env['BOT_TOKEN'];
 
-const BotClient = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const BotClient = new Discord.Client();
 
 // -- Server Stats That Don't Change Locally -- //
 var CoreStats = {
@@ -10,36 +9,26 @@ var CoreStats = {
   Prefix: ["!"],
 };
 
-BotClient.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	BotClient.commands.set(command.data.name, command);
-}
-
 BotClient.once('ready', () => {
 	console.log('Ready!');
   StartUpLogAndStatus()
 });
 
-BotClient.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
+BotClient.on('message', message => {
+  if(!message.content.startsWith(CoreStats.Prefix) || message.author.bot) return;
 
-	const { commandName } = interaction;
+  const args = message.content.slice(CoreStats.Prefix.length).split(/ +/);
+  const command = args.shift().toLowerCase();
 
-	if (commandName === 'ping') {
-		await interaction.reply('Pong!');
-	} else if (commandName === 'server') {
-		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
-	} else if (commandName === 'user') {
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
-	}
+  if(command === 'ping'){
+    message.channel.send('pong!')
+  }
 });
 
 
+
 function StartUpLogAndStatus(){
-    console.log('====================================');
+  console.log('====================================');
   console.log(' ~ Farmer Dan Bot -- Version ' + CoreStats.Version + '- ~ ')
   console.log('========= by clayman100man =========');
   console.log('====================================');
