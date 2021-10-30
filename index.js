@@ -16,6 +16,8 @@ CORE.BotClient.on('message', message => {
     message.channel.send('pong!')
   } else if(command === 'egg') {
     message.channel.send('egg')
+  } else if(command === "NMSUpdateDate") {
+    message.channel.send('https://cdn.discordapp.com/attachments/736039529453977711/903828401717137438/depositphotos_6767388-stock-illustration-red-hand-show-fuck.jpg')
   } else {
     message.channel.send('Unknown')
     
