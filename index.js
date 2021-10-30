@@ -1,48 +1,28 @@
-const Discord = require('discord.js')
-const Token = process.env['BOT_TOKEN'];
+const CORE = require('./globals.js');
+const Command = require('./commands.js');
 
-const BotClient = new Discord.Client();
-
-// -- Server Stats That Don't Change Locally -- //
-var CoreStats = {
-  Version: ["1.2.1"],
-  Prefix: ["!"],
-};
-
-BotClient.once('ready', () => {
+CORE.BotClient.once('ready', () => {
 	console.log('Ready!');
-  StartUpLogAndStatus()
+  console.log(Command.StartUpLogAndStatus())
 });
 
-BotClient.on('message', message => {
-  if(!message.content.startsWith(CoreStats.Prefix) || message.author.bot) return;
+CORE.BotClient.on('message', message => {
+  if(!message.content.startsWith(CORE.CoreStats.Prefix) || message.author.bot) return;
 
-  const args = message.content.slice(CoreStats.Prefix.length).split(/ +/);
+  const args = message.content.slice(CORE.CoreStats.Prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if(command === 'ping'){
+  if(command === 'ping') {
     message.channel.send('pong!')
+  } else if(command === 'egg') {
+    message.channel.send('egg')
+  } else {
+    message.channel.send('Unknown')
+    
   }
 });
 
-
-
-function StartUpLogAndStatus(){
-  console.log('====================================');
-  console.log(' ~ Farmer Dan Bot -- Version ' + CoreStats.Version + '- ~ ')
-  console.log('========= by clayman100man =========');
-  console.log('====================================');
-  console.log('Type "node ." to start the program!!');
-  console.log('====================================');
-  console.log('Add this bot to your discord server by following the link: https://discord.com/oauth2/authorize?client_id=900029558441529354&scope=bot&permissions=0');
-
-    BotClient.user.setActivity(
-        `No Sleep in ${BotClient.guilds.cache.size} Server(s) - Version ` + CoreStats.Version, {
-        type: "PLAYING",
-    });
-};
-
-BotClient.login(Token);
+CORE.BotClient.login(CORE.Token);
 
 
 
