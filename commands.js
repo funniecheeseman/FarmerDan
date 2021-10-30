@@ -9,7 +9,7 @@ const CORE = require('./globals.js');
 function StartUpLogAndStatus(){
   
   console.log('====================================');
-  console.log(' ~ ------- Farmer Dan Bot ------- ~ ');
+  console.log(' ~ Farmer Dan Bot -- Version ' + CORE.CoreStats.Version + '- ~ ')
   console.log('========= by clayman100man =========');
   console.log('====================================');
   console.log('Type "node ." to start the program!!');
