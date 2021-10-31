@@ -14,10 +14,25 @@ CORE.BotClient.on('message', message => {
 
   if(command === 'ping') {
     message.channel.send('pong!')
+
+  } else if(command === 'help' || command === 'cmds') {
+    message.channel.send('help cmd coming soon')
+
+  } else if(command === 'takeoverworld') {
+    message.channel.send('@Bots SCREW YOU IDIOTS I HATE YOU')
+
   } else if(command === 'egg') {
     message.channel.send('egg')
-  } else if(command === "NMSUpdateDate") {
+
+  } else if(command === 'egg') {
+    message.channel.send('egg')
+
+  } else if(command === 'nmsupdatedate') {
     message.channel.send('https://cdn.discordapp.com/attachments/736039529453977711/903828401717137438/depositphotos_6767388-stock-illustration-red-hand-show-fuck.jpg')
+
+  } else if(command === 'bob') {
+    message.channel.send("Beepe")
+
   } else {
     message.channel.send('Unknown')
     

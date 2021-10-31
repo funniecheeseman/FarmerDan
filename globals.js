@@ -4,7 +4,7 @@ const BotClient = new Discord.Client();
 
 // -- Server Stats That Don't Change Locally -- //
 var CoreStats = {
-  Version: ["1.4.0"],
+  Version: ["1.4.1"],
   Prefix: ["!"],
 };
 
